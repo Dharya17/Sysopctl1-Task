@@ -1,198 +1,131 @@
-# sysopctl
 
-`sysopctl` is a command-line tool designed for managing system services, processes, and system health. This tool provides various functionalities to help system administrators manage and monitor their systems effectively.
+# `sysopctl` Command Documentation
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Help](#help)
-  - [Version](#version)
-  - [Service Management](#service-management)
-    - [List Running Services](#list-running-services)
-    - [Start a Service](#start-a-service)
-    - [Stop a Service](#stop-a-service)
-  - [System Load](#system-load)
-  - [Disk Usage](#disk-usage)
-  - [Process Monitoring](#process-monitoring)
-  - [Log Analysis](#log-analysis)
-  - [Backup System Files](#backup-system-files)
-- [Manual Page](#manual-page)
-- [Version Control](#version-control)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
+**Version:** v0.1.0
 
 ## Introduction
-
-`sysopctl` is a versatile command-line tool aimed at simplifying system administration tasks. It allows users to manage system services, monitor system load, check disk usage, monitor processes, analyze logs, and backup system files.
-
-## Installation
-
-To install `sysopctl`, download the script and make it executable:
-
-```bash
-wget https://example.com/sysopctl.sh -O /usr/local/bin/sysopctl
-chmod +x /usr/local/bin/sysopctl
-```
+`sysopctl` is a command-line tool designed for managing various system operations. It provides users with an easy-to-use interface for interacting with system services, monitoring processes, analyzing logs, and performing system backups. This tool aims to simplify common system administration tasks, offering functionality similar to other Linux commands like `systemctl`, `uptime`, `df`, `top`, `journalctl`, and `rsync`.
 
 ## Usage
+All commands follow the general syntax:
 
-### Help
+```
+sysopctl <command> [options]
+```
 
-To display the help message with usage instructions and available commands:
+<!-- Installation of Sysopctl -->
 
-```bash
+### Basic Commands
+
+#### 1. Manual Page
+To access the full documentation through the manual:
+
+```
+man sysopctl
+```
+![man](https://github.com/user-attachments/assets/493127b3-aa9c-4b61-bb18-4579456ac8c1)
+
+#### 2. Help Option
+To display usage information and examples:
+
+```
 sysopctl --help
 ```
+![help](https://github.com/user-attachments/assets/17bdae92-aee4-49e8-96f9-ff1fdee81f51)
 
-### Version
 
-To display the version of `sysopctl`:
+#### 3. Version Information
+To display the current version of the `sysopctl` command:
 
-```bash
+```
 sysopctl --version
 ```
+![version](https://github.com/user-attachments/assets/4360be1a-e911-4b5a-bc73-d1bc62518db7)
 
-### Service Management
 
-#### List Running Services
+### System Management Operations
 
-To list all active services:
+#### Part 1: Easy Level
 
-```bash
+##### 1. List Running Services
+Lists all active services on the system, similar to `systemctl list-units --type=service`.
+
+**Command:**
+```
 sysopctl service list
 ```
+![service list](https://github.com/user-attachments/assets/dde93664-0526-41e7-a6d1-486a1701b9f6)
 
-This command lists all active services, similar to `systemctl list-units --type=service`.
 
-#### Start a Service
+##### 2. View System Load
+Displays the current system load averages, similar to the output from the `uptime` command.
 
-To start a specified service:
-
-```bash
-sysopctl service start <service-name>
+**Command:**
 ```
-
-Replace `<service-name>` with the name of the service you want to start. This command starts the specified service and confirms the action.
-
-#### Stop a Service
-
-To stop a specified service:
-
-```bash
-sysopctl service stop <service-name>
-```
-
-Replace `<service-name>` with the name of the service you want to stop. This command stops the specified service and confirms the action.
-
-### System Load
-
-To show current system load averages:
-
-```bash
 sysopctl system load
 ```
+![system load](https://github.com/user-attachments/assets/81253e36-a861-4459-b5b8-0559c287dc7d)
 
-This command displays the current system load averages, similar to the output of the `uptime` command.
 
-### Disk Usage
+#### Part 2: Intermediate Level
 
-To show disk usage statistics by partition:
+##### 1. Manage System Services
+Starts or stops a specific service, akin to using `systemctl start/stop`.
 
-```bash
+
+**Start a Service:**
+```
+sysopctl service Start <service-name>
+```
+**Stop a Service:**
+```
+sysopctl service stop <service-name>
+```
+![stop service](https://github.com/user-attachments/assets/3248a52c-1924-4545-a264-a0e8b0fc94aa)
+
+
+
+##### 2. Check Disk Usage
+Displays disk usage statistics by partition, similar to `df -h`.
+
+**Command:**
+```
 sysopctl disk usage
 ```
+![disk usage](https://github.com/user-attachments/assets/6f088e67-3c88-4560-9866-0a63de835a4d)
 
-This command shows disk usage statistics by partition, similar to the output of the `df -h` command.
 
-### Process Monitoring
+#### Part 3: Advanced Level
 
-To monitor real-time process activity:
+##### 1. Monitor System Processes
+Monitors real-time process activity, similar to the `top` or `htop` commands.
 
-```bash
+**Command:**
+```
 sysopctl process monitor
 ```
+![Screenshot from 2024-09-11 15-34-39](https://github.com/user-attachments/assets/873cead7-085c-4953-bf3a-8eddb32eace2)
 
-This command monitors real-time process activity, similar to the `top` command.
 
-### Log Analysis
 
-To analyze recent critical log entries:
+##### 2. Analyze System Logs
+Analyzes and summarizes recent critical log entries, utilizing tools like `journalctl`.
 
-```bash
-sysopctl logs analyze
+**Command:**
 ```
+sysopctl logs analyse
+```
+![logs](https://github.com/user-attachments/assets/00e00828-f457-498f-9281-8dd1aff30db8)
 
-This command analyzes recent critical log entries using `journalctl -p crit`.
 
-### Backup System Files
+##### 3. Backup System Files
+Initiates a backup of specified files or directories, potentially using `rsync` for file transfers.
 
-To backup system files from the specified path:
-
-```bash
+**Command:**
+```
 sysopctl backup <path>
 ```
+![backup](https://github.com/user-attachments/assets/5d5bdd4e-5edb-43f3-a6a1-9342b726a5d5)
 
-Replace `<path>` with the path of the files you want to backup. This command uses `rsync` to backup system files from the specified path to `/backup/`.
 
-## Manual Page
-
-Create a manual page for `sysopctl` using a text editor and save it as `sysopctl.1`.
-
-```man
-.TH SYSOPCTL 1 "September 2024" "sysopctl v0.1.0" "System Management Command"
-.SH NAME
-sysopctl \- manage system resources and tasks
-.SH SYNOPSIS
-.B sysopctl
-[\fIcommand\fR] [\fIoptions\fR]
-.SH DESCRIPTION
-.B sysopctl
-is a command-line tool for managing system services, processes, and system health.
-.SH COMMANDS
-.TP
-.B \-\-help
-Display this help message.
-.TP
-.B \-\-version
-Show the version of sysopctl.
-.TP
-.B service list
-List all active services.
-.TP
-.B system load
-Show current system load averages.
-.TP
-.B service start <service-name>
-Start a specified service.
-.TP
-.B service stop <service-name>
-Stop a specified service.
-.TP
-.B disk usage
-Show disk usage statistics by partition.
-.TP
-.B process monitor
-Monitor real-time process activity.
-.TP
-.B logs analyze
-Analyze recent critical log entries.
-.TP
-.B backup <path>
-Backup system files from the specified path.
-```
-
-## Version Control
-
-Commit all code and configuration files to a private Git repository to ensure version control and confidentiality.
-
-## Documentation
-
-Use Draw.io to create workflow diagrams and system architecture visuals. Include these diagrams in your project documentation to provide a clear understanding of the system's design and functionality.
-
-## Contributing
-
-If you would like to contribute to `sysopctl`, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
